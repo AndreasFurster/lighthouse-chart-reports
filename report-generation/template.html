@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="nl">
+
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Calendar</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+    <!--<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+  <link rel="stylesheet" href="../src/style.css"> -->
+  </head>
+
+  <body>
+    {{#each sites as |site|}}
+    <h1>{{@key}}</h1>
+    <div style="margin-bottom: 600px;">
+      {{#each site as |url|}}
+        <div style="width: 30%; height: 400px; float: left;">
+          <canvas id="chart-{{@../index}}-{{@index}}"></canvas>
+          
+        </div>
+
+        <script>
+          var datasets = [];
+
+          {{#each url as |report|}}
+            var dataset = {
+              label: "{{report.fetchTime}}",
+              backgroundColor: [],
+              minBarLength: 0,
+              maxBarLength: 1,
+              data: [
+                {{report.[Performance]}}, 
+                {{report.[Accessibility] }}, 
+                {{report.[Best Practices] }}, 
+                {{report.[SEO] }}, 
+                {{report.[Progressive Web App] }}, 
+              ]
+            };
+
+            for (let i = 0; i < dataset.data.length; i++) {
+              const value = dataset.data[i];
+              
+              if(value < 0.5) dataset.backgroundColor[i] = '#ff4e42';
+              if(value >= 0.5 && value < 0.9) dataset.backgroundColor[i] = '#ffa400';
+              if(value >= 0.9) dataset.backgroundColor[i] = '#0cce6b';
+            }
+
+            datasets.push(dataset)
+          {{/each}}
+        
+          new Chart(document.getElementById("chart-{{@../index}}-{{@index}}"), {
+            type: 'bar',
+            data: {
+              labels: ["Performance", "Accessibility", "Best Practices", "SEO", "Progressive Web App"],
+              datasets: datasets
+            },
+            options: {
+              legend: { display: false },
+              title: {
+                display: true,
+                text: "{{ url.0.requestedUrl }}"
+              },
+              scales: {
+                yAxes: [
+                  {
+                    ticks: {beginAtZero:true,max:1}
+                  }
+                ]
+              }
+            }
+          });
+        </script>
+      {{/each}}
+    </div>
+    {{/each}}
+  </body>
+
+</html>
