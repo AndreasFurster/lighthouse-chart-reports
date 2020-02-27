@@ -1,0 +1,31 @@
+{
+  "name": "paper-calendar-generator",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node ./src/index.js",
+    "watch": "npm start && npx onchange 'src/**' -- npm start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AndreasFurster/paper-calendar-generator.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/AndreasFurster/paper-calendar-generator/issues"
+  },
+  "homepage": "https://github.com/AndreasFurster/paper-calendar-generator#readme",
+  "dependencies": {
+    "handlebars": "^4.5.3",
+    "handlebars-helper-repeat": "^2.0.0",
+    "handlebars-helpers": "^0.10.0",
+    "moment": "^2.24.0",
+    "moment-range": "^4.0.2",
+    "onchange": "^6.1.0",
+    "puppeteer": "^2.0.0"
+  }
+}
