@@ -8,20 +8,21 @@
     <title>Calendar</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 
-    <!--<link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
-  <link rel="stylesheet" href="../src/style.css"> -->
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans|Roboto+Slab&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" integrity="sha256-+N4/V/SbAFiW1MPBCXnfnP9QSN3+Keu+NlB+0ev/YKQ=" crossorigin="anonymous" />
+    <link rel="stylesheet" href="../src/style.css">
   </head>
 
-  <body>
+  <body style="text-align: center;">
     {{#each sites as |site|}}
     <h1>{{@key}}</h1>
-    <div style="margin-bottom: 600px;">
+    <!-- style="margin-bottom: 600px;" -->
+    <div>
       {{#each site as |url|}}
-        <div style="width: 30%; height: 400px; float: left;">
+        <!-- style="width: 30%; height: 400px; float: left;" -->
+        <div class="{{#if @last}}mb-8{{/if}}">
           <canvas id="chart-{{@../index}}-{{@index}}"></canvas>
-          
         </div>
 
         <script>

@@ -1,4 +1,8 @@
-result/*
+data-retrieval/result/*
+data-retrieval/combined.json
+data-retrieval/urls.txt
+report/result.html
+report/result.pdf
 
 # Logs
 logs

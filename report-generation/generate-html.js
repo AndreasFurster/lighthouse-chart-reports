@@ -9,7 +9,7 @@ handlebars.registerHelper(helpers)
 module.exports = function(templateFile) {
   this._html = null
   this._template = null
-  
+    
   let source = fs.readFileSync(templateFile, 'utf-8');
   this._template = handlebars.compile(source);
   console.log('Template loaded and compiled.');

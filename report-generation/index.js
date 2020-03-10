@@ -6,7 +6,7 @@ const config = require('./config')()
 
 
 async function generate() {
-  let dataJson = fs.readFileSync(`./combined.json`);
+  let dataJson = fs.readFileSync(config.combinedJsonFile);
   let rawData = JSON.parse(dataJson);
 
   for (let i = 0; i < rawData.length; i++) {
@@ -32,8 +32,8 @@ async function generate() {
   htmlGenerator.render(data)
   htmlGenerator.saveResultToFile(config.resultHtmlFile)
 
-  // const pdfGenerator = await generatePdf();
-  // await pdfGenerator.generate(config.resultHtmlFile, config.resultPdfFile)
+  const pdfGenerator = await generatePdf();
+  await pdfGenerator.generate(config.resultHtmlFile, config.resultPdfFile)
 }
 
 const groupBy = (items, key) => items.reduce(
